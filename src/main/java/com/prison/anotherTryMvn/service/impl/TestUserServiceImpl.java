@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.prison.anotherTryMvn.dao.TestUser;
 import com.prison.anotherTryMvn.service.TestUserService;
 import com.prison.anotherTryMvn.mapper.TestUserMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import static com.prison.anotherTryMvn.constant.RedisKey.CACHE_NAME;
 
 /**
 * @author 小王
@@ -15,6 +18,17 @@ import org.springframework.stereotype.Service;
 public class TestUserServiceImpl extends ServiceImpl<TestUserMapper, TestUser>
     implements TestUserService{
 
+    /**
+     * key 缓存的key值
+     * value 缓存的名字
+     * condition 用于入参的条件 满足条件才进行缓存
+     * unless 用于出参的条件 满足条件不进行缓存
+     */
+    @Cacheable(value = CACHE_NAME, key = "#name", unless = "#result == null", condition = "(#name != null) and (!#name.isBlank())")
+    @Override
+    public TestUser selectByName(String name) {
+        return this.lambdaQuery().eq(TestUser::getUsername, name).one();
+    }
 }
 
 

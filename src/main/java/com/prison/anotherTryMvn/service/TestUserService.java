@@ -2,6 +2,7 @@ package com.prison.anotherTryMvn.service;
 
 import com.prison.anotherTryMvn.dao.TestUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
 * @author 小王
@@ -9,5 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-08-14 09:44:01
 */
 public interface TestUserService extends IService<TestUser> {
+
+    TestUser selectByName(String name);
 
 }

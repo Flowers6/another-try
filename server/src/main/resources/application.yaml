@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: server
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456 # Redis 服务器密码，默认为空。生产中，一定要设置 Redis 密码！
+      database: 1 # Redis 数据库号，默认为 0 。
+      timeout: 0 # Redis 连接超时时间，单位：毫秒。
+  datasource:
+    url: jdbc:mysql://localhost:3306/another_try
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cache:
+    cache-names: test #缓存名称
+    type: none #指定所使用的缓存管理器
+
+# mybatis-plus 配置内容
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
+  global-config:
+    db-config:
+      id-type: auto # ID 主键自增
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.prison.server.dao
+
+# logging
+logging:
+  level:
+    # dao 开启 debug 模式 mybatis 输入 sql
+    cn:
+      iocoder:
+        springboot:
+          lab12:
+            mybatis:
+              mapper: debug
+
+server:
+  port: 8080

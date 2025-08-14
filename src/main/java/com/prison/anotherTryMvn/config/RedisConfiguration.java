@@ -1,4 +1,4 @@
-package com.prison.anothertrymvn.config;
+package com.prison.anotherTryMvn.config;
 
 import org.redisson.spring.starter.RedissonAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

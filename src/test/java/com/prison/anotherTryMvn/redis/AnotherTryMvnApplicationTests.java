@@ -1,6 +1,5 @@
-package com.prison.anothertrymvn;
+package com.prison.anotherTryMvn.redis;
 
-import com.sun.jdi.VoidValue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
